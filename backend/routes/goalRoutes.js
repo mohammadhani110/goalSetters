@@ -1,11 +1,10 @@
 const express =require("express");
 const router = express.Router();
 
-const {getGoals,setGoals,updateGoals,deleteGoals}=require("../controllers/goalControllers");
+const {getGoals,setGoals,updateGoal,deleteGoal}=require("../controllers/goalControllers");
 
-router.get("/",getGoals);
-router.post("/",setGoals);
-router.put("/:id",updateGoals)
-router.delete("/:id",deleteGoals)
+//chaining same route for different requests
+router.route("/").get(getGoals).post(setGoals);
+router.route("/:id").put(updateGoal).delete(deleteGoal);
 
 module.exports =router
